@@ -1,16 +1,20 @@
+// import video list for use in app
+import VideoList from './videoList.js'
+import exampleVideoData from './../data/exampleVideoData.js';
+
 var App = () => (
   <div>
     <nav className="navbar">
       <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+        <div><h5><em>Search</em> view goes here</h5></div>
       </div>
     </nav>
     <div className="row">
       <div className="col-md-7">
-        <div><h5><em>videoPlayer</em> view goes here</h5></div>
+        <div><h5><em>VideoPlayer</em> view goes here</h5></div>
       </div>
       <div className="col-md-5">
-        <div><h5><em>videoList</em> view goes here</h5></div>
+        <div><h5><em>VideoList</em><VideoList videos={exampleVideoData}/></h5></div>
       </div>
     </div>
   </div>
