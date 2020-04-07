@@ -10,6 +10,7 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      videos: exampleVideoData,
       currentVideo: exampleVideoData[0],
       // remaining videos minus current video
       currentVideoList: exampleVideoData.filter(video => video !== exampleVideoData[0]),
@@ -17,19 +18,16 @@ class App extends React.Component {
     this.handleTitleClick = this.handleTitleClick.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.callBackVideos = this.callBackVideos.bind(this);
-    this.videos = [];
-
   }
 
   handleTitleClick(myEtag) {
     this.setState({
-      currentVideo: exampleVideoData.filter(video => video.etag === myEtag)[0],
+      currentVideo: this.state.videos.filter(video => video.etag === myEtag)[0],
     });
     this.setState({
-      currentVideoList: exampleVideoData.filter(video => video.etag !== myEtag),
+      currentVideoList: this.state.videos.filter(video => video.etag !== myEtag),
     });
   }
-
 
   handleSearchSubmit(searchValue){
     const searchOptions = {
@@ -37,18 +35,19 @@ class App extends React.Component {
       query: searchValue,
       max: 5,
     };
-    // console.log(exampleVideoData);
     searchYouTube(searchOptions, this.callBackVideos);
   }
 
   callBackVideos(array){
-    this.videos = array;
-    console.log(this.videos);
     this.setState({
-      currentVideo: this.videos[0],
+      videos: array,
+    })
+    console.log(this.state.videos);
+    this.setState({
+      currentVideo: this.state.videos[0],
     });
     this.setState({
-      currentVideoList: this.videos.filter(video => video !== this.videos[0]),
+      currentVideoList: this.state.videos.filter(video => video !== this.state.videos[0]),
     });
   }
 
