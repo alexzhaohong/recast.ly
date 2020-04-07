@@ -3,18 +3,9 @@
 import VideoListEntry from './VideoListEntry.js';
 
 var VideoList = (props) => {
-    var rows = [];
-
-    props.videos.forEach((video) => {
-      console.log(video)
-      rows.push(
-        <VideoListEntry video={video} key={video.etag}/>
-      )
-    });
-
   return (
   <div className="video-list">
-    <div>{rows}</div>
+    {props.videos.map((video) => <VideoListEntry key={video.etag} video={video} handleTitleClick={props.handleTitleClick} />)}
   </div>
   )
 };
